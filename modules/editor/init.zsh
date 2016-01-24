@@ -298,8 +298,9 @@ for keymap in 'emacs' 'viins'; do
   fi
 
   # Display an indicator when completing.
-  bindkey -M "$keymap" "$key_info[Control]I" \
-    expand-or-complete-with-indicator
+  if zstyle -t ':prezto:module:editor' completion-waiting-dots; then  
+    bindkey -M "$keymap" "$key_info[Control]I" expand-or-complete-with-indicator
+  fi
 
   # Insert 'sudo ' at the beginning of the line.
   bindkey -M "$keymap" "$key_info[Control]X$key_info[Control]S" prepend-sudo
