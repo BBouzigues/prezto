@@ -133,7 +133,7 @@ function prompt_bbo_setup {
 'status' '%F{2}(%f$(coalesce "%b" "%p" "%c")%s%C%A%B%a%d%m%r%U%u%F{2})%f%S'
 
   # Define prompts.
-  PROMPT='[%F{'$HOST_COLOR'}%m%f:%F{'$PATH_COLOR'}${_prompt_bbo_pwd}%f] %F{'$USER_COLOR'}%n%%%f '
+  PROMPT='[%F{'${HOST_COLOR:=blue}'}%m%f:%F{'${PATH_COLOR:=white}'}${_prompt_bbo_pwd}%f] %F{'${USER_COLOR:=red}'}%n%%%f '
   RPROMPT=''
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }

@@ -14,5 +14,6 @@ mv "${ZDOTDIR:-$HOME}/.zshrc" "${ZDOTDIR:-$HOME}/.zshrc-${INSTALL_DATE}-bak" > /
 
 COLORS=(red green yellow blue magenta cyan)
 echo "HOST_COLOR=${COLORS[$(($RANDOM%${#COLORS[@]}+1 ))]}" > "${ZDOTDIR:-$HOME}/.zshrc"
+echo "PATH_COLOR=white" >> "${ZDOTDIR:-$HOME}/.zshrc"
 echo "USER_COLOR=${COLORS[$(($RANDOM%${#COLORS[@]}+1 ))]}" >> "${ZDOTDIR:-$HOME}/.zshrc"
 echo "source '${PREZTO_DIR}/runcoms/zshrc'" >> "${ZDOTDIR:-$HOME}/.zshrc"
