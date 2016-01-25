@@ -10,4 +10,116 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+
+bindkey '^T' autosuggest-toggle
+bindkey '^f' vi-forward-word
+
+function addToPATH()
+{
+	if [ "$#" = 0 ]; then
+		echo "Missing argument";
+		return;
+	fi
+	if [ -d "$1" ]; then
+	    if [[ $PATH != *${1}* ]]; then
+		PATH=${1}:${PATH}
+		export PATH
+	    fi
+	fi
+}
+
+# psg = ps grep
+alias psg='ps -auxe | grep -v "grep" | grep'
+
+# Alias directory name as cd
+function aliasCd()
+{
+	if [[ -d "$2" ]]; then
+		alias $1="cd $2"
+	fi
+}
+
+######################
+### Mac OS X specific
+######################
+
+if [[ "$OSTYPE" != darwin* ]]; then
+
+  # Mac os x aliases
+  alias safari='open -a Safari'
+  alias tm='open -a TextMate'
+  alias atom='open -a Atom'
+
+  # Dev
+  addToPATH /Development/lib/apache-tomcat-latest/bin
+  addToPATH /Development/lib/apache-maven-latest/bin
+  addToPATH /Development/lib/apache-grails-latest/bin
+  addToPATH /Development/lib/spring-roo-latest/bin
+
+  # change directory to Finder frontmost window
+	cdf()
+	{
+		cd "`osascript -e 'tell application "Finder" to return POSIX path of (the folder of the front window as alias)'`"
+	}
+
+  if [[ -d /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home ]];then
+    export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
+  else
+    echo "JAVA_HOME not set !"
+  fi
+
+	alias visualvm="jvisualvm $JAVA_HOME"
+fi
+
+###
+function zshelp()
+{
+	if [ "$#" = 0 ]; then
+		echo "Available: args params rename";
+		return;
+	fi
+	if [ "$1" = "args" ]; then
+		echo "ls *(.)           # list just regular files *N*"
+		echo "ls *(/)           # list just rectories *N*"
+		echo "vi *(.om[1])      # vi newest file"
+		echo "vi -p *(.om[1,3]) # open 3 newest files in tabs (gvim)"
+		echo "vi *(m0)          # re-edit all files changed today!"
+		echo "ls *(^m0)         # files NOT modified today"
+		echo "ls -l *(m4)       # list files modified exactly 4 days ago"
+		echo "ls -l *(.m4)      # list files modified exactly 4 days ago (ignore directories)"
+		echo "vi **/main.php    # where ever it is in hierarchy"
+		echo "ls -l **/main.{php,js,css}    #    *N*"
+		echo "ls fred^erick*    # list all files fred* except frederick*    *N*"
+		echo "ls (x*~x[3-5])    # list files x* except x3 to x5"
+		echo "ls **/*~*/.git/*  # ignore all git subdirectories *~* matches a path *N*"
+		echo "vi !$             # vi last parameter"
+		echo "vi !-2:2          # second parameter of second but last command"
+		echo "vi !$:r.php       # vi last parameter but change extension to .php"
+		echo "^php^cfm          # modify previous command (good for correcting spellos)"
+		echo "ls *(.L0)         # list pesky empty files (yes that is a zero) *N*"
+		echo "ls -l *(L-2)      # list file size less than 2 bytes *N*"
+		echo "ls -l *(.L-20)    # list file size less than 20 bytes - . ignore directories *N*"
+		echo "ls -l *(Lk+100)   # list file size greater than 100kb *N*"
+		echo "ls -l *(Lm+2)     # list file size greater than 2 mbs *N*"
+		return;
+	fi
+	if  [ "$1" = "params" ]; then
+		echo "!!"
+		echo "!$ (last argument)"
+		echo "!$:h (last argument, strip one level)"
+		echo "!$:h:h (last argument, strip two levels)"
+		echo "!?echo"
+		echo "vi !* (all parameters)"
+		echo "vi !$ (last parameter)"
+		echo "vi !^  (first previous parameter)"
+		echo "vi !:1 (first previous parameter)"
+		echo "vi !-2:2 (second parameter of second but last command)"
+		echo "history               # View recent commands"
+		echo "!42                   # Re-execute history command 42	"
+	fi
+	if  [ "$1" = "rename" ]; then
+		echo "cp longfilename.php backup_!#^"
+		echo "cp {,backup_}verylongfilename.tex   # same thing"
+		echo "mv textfile.{txt,bak}   # expands to mv textfile.txt textfile.bak"
+	fi
+}

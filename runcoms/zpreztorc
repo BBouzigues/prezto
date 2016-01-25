@@ -26,13 +26,19 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
-  'editor' \
   'history' \
+  'command-not-found' \
   'directory' \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt'
+  'git' \
+  'osx' \
+  'homebrew' \
+  'prompt' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions'
 
 #
 # Autosuggestions
@@ -89,7 +95,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'bbo'
 
 #
 # Ruby
@@ -139,7 +145,7 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 #
 
 # Auto set the tab and window titles.
-# zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
 # zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
