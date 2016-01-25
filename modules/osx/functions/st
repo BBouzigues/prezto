@@ -1,0 +1,26 @@
+#
+# Opens man pages in Git repo with SourceTree.
+#
+# Authors:
+#   Sorin Ionescu <bbouzigues@gmail.com>
+#
+
+function st {
+  if (( $# > 0 )); then
+    if [[ -d "$1" ]]; then
+       target_dir="$1"
+    else
+       print "Cannot find directory $1"
+       return 1
+    fi
+  else
+    target_dir=.
+  fi
+  git_root_dir=$( cd "$target_dir" ; git rev-parse --show-cdup )
+  if (( $? != 0 )); then
+    return 2
+  fi
+  open -a "SourceTree" "$target_dir"/$( cd "$target_dir" ; git rev-parse --show-cdup )
+}
+
+st "$@"
