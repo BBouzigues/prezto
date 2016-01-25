@@ -56,12 +56,6 @@ if [[ "$OSTYPE" != darwin* ]]; then
   addToPATH /Development/lib/apache-grails-latest/bin
   addToPATH /Development/lib/spring-roo-latest/bin
 
-  # change directory to Finder frontmost window
-	cdf()
-	{
-		cd "`osascript -e 'tell application "Finder" to return POSIX path of (the folder of the front window as alias)'`"
-	}
-
   if [[ -d /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home ]];then
     export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
   else

@@ -1,0 +1,5 @@
+if [ -z "$1" ]; then
+	cd $(osascript -e 'tell application "Finder" to return POSIX path of (the folder of the front window as alias)')
+else
+	cd "$1"
+fi

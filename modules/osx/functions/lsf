@@ -1,0 +1,16 @@
+function lsf() {
+osascript \
+    -e 'tell application "Finder"'\
+    -e '	set theWindowList to every Finder window'\
+	-e '	set theResult to ""'\
+    -e '	repeat with i in theWindowList'\
+    -e '		try'\
+    -e '			set theResult to theResult & POSIX path of ((target of i) as alias) & "\n"'\
+    -e '		end try'\
+    -e '	end repeat'\
+	-e '	return theResult'\
+    -e 'end tell'
+}
+
+lsf | grep -v "^$"
+
