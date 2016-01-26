@@ -5,6 +5,18 @@ Prezto is the configuration framework for [Zsh][1]; it enriches the command line
 interface environment with sane defaults, aliases, functions, auto completion,
 and prompt themes.
 
+Please visit original project page: https://github.com/sorin-ionescu/prezto
+
+This fork is my personal custom setup.
+
+Custom additions are:
+- install script that backup the previous .z-files and install the new ones
+- mac modules are enabled (osx, homebrew...)
+- custom aliases have been added (open with chrome, safari, SourceTree, ...)
+- few tweeks have been added (color iTerm tabs on ssh)
+- autosuggestion module has been added on master
+- check other branches for other additional modules (notify,...)
+
 Installation
 ------------
 
@@ -17,15 +29,11 @@ version is 4.3.17.
 
   2. Clone the repository:
 
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+        git clone --recursive https://github.com/bbouzigues/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
-  3. Create a new Zsh configuration by copying the Zsh configuration files
-     provided:
+  3. Run install script:
 
-        setopt EXTENDED_GLOB
-        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-          ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-        done
+
 
   4. Set Zsh as your default shell:
 
