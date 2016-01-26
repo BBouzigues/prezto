@@ -16,3 +16,7 @@ fi
 
 # Pushes directory to the current Finder directory.
 alias pushdf='pushd "$(pfd)"'
+
+if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+  alias ssh='tab-color-ssh'
+fi

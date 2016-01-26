@@ -1,0 +1,7 @@
+#compdef tab-color-ssh
+#autoload
+#
+# Completes tab-color-ssh
+#
+
+_ssh
