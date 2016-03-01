@@ -9,7 +9,7 @@
 pmodload 'editor'
 
 # Source module files.
-source "${0:h}/external/autosuggestions.zsh" || return 1
+source "${0:h}/external/zsh-autosuggestions.zsh" || return 1
 
 #
 # Highlighting
@@ -17,19 +17,13 @@ source "${0:h}/external/autosuggestions.zsh" || return 1
 
 # Set highlight color, default is 'fg=8'.
 zstyle -s ':prezto:module:autosuggestions:color' found \
-  'AUTOSUGGESTION_HIGHLIGHT_COLOR' || AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=8'
-
-# AUTOSUGGESTION_HIGHLIGHT_CURSOR: highlight word after cursor or not. Must be integer value 1 or 0, default is 1.
-if ! zstyle -t ':prezto:module:autosuggestions:color' cursor; then
-  AUTOSUGGESTION_HIGHLIGHT_CURSOR=1
-fi
+  'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE' || ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 if ! zstyle -t ':prezto:module:autosuggestions' color; then
-  AUTOSUGGESTION_HIGHLIGHT_COLOR=''
-  AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=''
 fi
 
-eval "function zle-line-init { zle autosuggest-start; $functions[zle-line-init] }"
+#eval "function zle-line-init { zle autosuggest-start; $functions[zle-line-init] }"
 
 #
 # Key Bindings
@@ -49,4 +43,3 @@ if [[ -n "$key_info" ]]; then
     bindkey -M "$keymap" "$key_info[Control]T" autosuggest-toggle
   done
 fi
-
